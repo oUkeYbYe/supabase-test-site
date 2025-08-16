@@ -11,14 +11,13 @@ body {
 }
 
 img {
-  max-width: 80%;
-  height: auto;
-  border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  width: 100vw;
+  height: 100vh;
+
 }
 
 h1 {
-  margin-bottom: 1rem;
+
 }
 
 p {
