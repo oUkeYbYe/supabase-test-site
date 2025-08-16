@@ -17,7 +17,9 @@ img {
 }
 
 h1 {
-height: 0px;
+font-size: 5px;
+font-family: tahoma;
+color: red;
 }
 
 p {
