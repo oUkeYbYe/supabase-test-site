@@ -17,10 +17,9 @@ img {
 }
 
 h1 {
-
+height: 0px;
 }
 
 p {
-  margin-top: 1rem;
-  max-width: 600px;
+ height: 0px;
 }
