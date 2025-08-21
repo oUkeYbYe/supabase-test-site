@@ -1,16 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Supabase Image Test</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Unique Clothes</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- Supabase client -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
-  <div id="title">Loading...</div>
-  <div class="wiggle"> <img id="image" alt="Post image" /> </div>
-  <div id="body"></div>
+  <p>
+    Welcome to my website! Please have fun browsing through the images. I hope you are having a great time doing so.  
+    I am open for commissions! If you're interested please tell me via mail or slide into my dm's on Instagram.
+  </p>
 
+  <div class="grid" id="items-grid"></div>
 
-  <script type="module" src="script.js"></script>
+  <!-- Show Everything button gets injected by JS -->
+
+  <script src="script.js"></script>
 </body>
 </html>
