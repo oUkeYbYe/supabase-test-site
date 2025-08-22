@@ -1,9 +1,8 @@
-// Replace with your own Supabase URL + anon key
+import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
+
 const supabaseUrl = "https://zqpggcvrofsvwcdqshjh.supabase.co";
 const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpxcGdnY3Zyb2ZzdndjZHFzaGpoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQ1MTAwNzgsImV4cCI6MjA3MDA4NjA3OH0.Le3pvGyOBMlo2Ti-Pk_Yc4qplDwo9ZtcdfEOKnPFf5s";
-
-// Correct Supabase v2 initialization
-const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+const supabase = createClient(supabaseUrl, supabaseKey);
 
 const grid = document.getElementById("items-grid");
 
@@ -19,25 +18,17 @@ async function loadItems() {
     return;
   }
 
-  console.log("Fetched items:", items); // debug log
-
-  grid.innerHTML = ""; // clear grid
+  grid.innerHTML = "";
 
   items.forEach(item => {
     const div = document.createElement("div");
     div.className = "item";
 
-    // Format collaboration (array -> string)
     const collabText = Array.isArray(item.collaboration)
       ? item.collaboration.join(", ")
       : item.collaboration || "";
-      
 
-    // Format tags (text -> array of 1)
-    const tagList = item.tags
-      ? [item.tags]
-      : [];
-
+    const tagList = item.tags ? [item.tags] : [];
     div.dataset.tags = tagList.join(",");
 
     div.innerHTML = `
@@ -51,7 +42,6 @@ async function loadItems() {
 
     grid.appendChild(div);
   });
-  
 
   setupTagFiltering();
   setupOverlay();
@@ -62,7 +52,6 @@ function setupTagFiltering() {
   const items = document.querySelectorAll(".item");
   const tags = document.querySelectorAll(".tag");
 
-  // Create "Show Everything" button if not already
   if (!document.getElementById("show-all")) {
     const showAllBtn = document.createElement("button");
     showAllBtn.id = "show-all";
@@ -83,11 +72,7 @@ function setupTagFiltering() {
           ? item.dataset.tags.split(",").map(t => t.trim().toLowerCase())
           : [];
 
-        if (itemTags.includes(selectedTag)) {
-          item.style.display = "";
-        } else {
-          item.style.display = "none";
-        }
+        item.style.display = itemTags.includes(selectedTag) ? "" : "none";
       });
     });
   });
@@ -95,7 +80,7 @@ function setupTagFiltering() {
 
 // Overlay (click image to enlarge)
 function setupOverlay() {
-  if (document.querySelector(".overlay")) return; // avoid duplicates
+  if (document.querySelector(".overlay")) return;
 
   const overlay = document.createElement("div");
   overlay.classList.add("overlay");
@@ -115,10 +100,11 @@ function setupOverlay() {
   closeBtn.addEventListener("click", () => {
     overlay.style.display = "none";
   });
+
   overlay.addEventListener("click", e => {
     if (e.target === overlay) overlay.style.display = "none";
   });
 }
 
-// Load items on page load
+// Initialize
 loadItems();
